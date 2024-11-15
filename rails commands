@@ -1,0 +1,79 @@
+pasos para generar los modelos
+rails generate model Publication title:string  description:text category:integer
+rails generate model Comments description:text publication:references
+
+feed the database
+#add publications
+pub1 = Publication.create(title: "Publication 1", description: "This is the first publication.", category: :admin)
+pub2 = Publication.create(title: "Publication 2", description: "This is the second publication.", category: :reader)
+
+#add comments
+pub1.comments.create(description: "This is a comment on the first publication.")
+pub1.comments.create(description: "Another comment on the first publication.")
+pub2.comments.create(description: "This is a comment on the second publication.")
+
+#check associations
+# Get the first publication and check its comments
+pub1 = Publication.find_by(title: "Publication 1")
+pub1.comments  # Should return all comments for pub1
+
+# Find the first comment and check its associated publication
+comment = Comment.first
+comment.publication  # Should return the publication associated with the first comment
+
+#Generate Controller of Publications
+rails generate controller Publications
+
+
+rails g devise:views
+
+user.role  # => "admin"
+user.admin?  # => true
+user.writer?  # => false
+
+problems
+ Unable to save or update name "Unpermitted parameter: :name" #32
+ https://github.com/RailsApps/rails-devise/issues/32 
+ 
+ #Generate migration to add user_id to publication 
+ #(Malo) rails generate migration AddUserIdToPublications user:references
+rails generate migration AddUserToPublications user:references
+
+check the relational with user and publication
+pub1 = Publication.create(title: "Publication 1", description: "This is the first publication.", category: :writer, user: 1)
+
+#i have to do All rollback, i mean erase everything
+rails db:migrate:reset
+
+#add relation one to one with comments and user writer
+source for relations in rails
+https://www.learneroo.com/modules/137/nodes/767
+
+rails generate migration AddUserToComments user_id:integer
+
+i am using a devise  gem in rails and i have a name and role enum "admin" and "writer" and have confirmation email and all the sign-up by web interface are role writer.
+
+i need by console to seed the admin user how to do that that don't ask for confirmation and enum for admin is 0
+
+rails console
+
+User.create!(name: "John Doe", email: "admin@hotmail.com", password: "superUser1234", password_confirmation: "superUser1234", role: :admin, confirmed_at: Time.current)
+
+seed the publications
+Publication.create(title: "Publication 1", description: "This is the first publication.", category: :love, user_id: 1)
+Publication.create(title: "Publication 2", description: "This is the second publication.", category: :love, user_id: 1)
+
+Comment.create(description: "Comentario a la publicacion", publication_id: 1, user_id: 1)
+
+Usuarios de la base de datos
+WRITERS
+santiago@hotmail.com
+admin1234
+
+correorailsprueba@gmail.com
+123456
+
+ADMIN
+admin@hotmail.com
+superUser1234
+
