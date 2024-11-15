@@ -17,6 +17,7 @@ class User < ApplicationRecord
 
   #relations
   has_many :publications, dependent: :destroy
+  has_one :comment
 
   private
 
