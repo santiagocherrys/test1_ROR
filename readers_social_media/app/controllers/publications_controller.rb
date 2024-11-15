@@ -1,4 +1,5 @@
 class PublicationsController < ApplicationController
+  before_action :authenticate_user!  #this line is to authenticate first
   def index
     @publications = Publication.all
   end
