@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
+  #routes for publications
+  resources :publications
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   #resources :publications
   #get '/', to: 'publications#index'
