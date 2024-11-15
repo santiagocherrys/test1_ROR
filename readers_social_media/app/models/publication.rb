@@ -1,9 +1,12 @@
 class Publication < ApplicationRecord
   
+
+
   #enums
   enum category: {love: 0, fantasy: 1, action: 2, real_life: 3}
 
   #add relations
+  belongs_to :user
   has_many :comments, dependent: :destroy
 
   #validations

@@ -15,6 +15,9 @@ class User < ApplicationRecord
   #callback
   before_create :set_default_role
 
+  #relations
+  has_many :publications, dependent: :destroy
+
   private
 
   def set_default_role
