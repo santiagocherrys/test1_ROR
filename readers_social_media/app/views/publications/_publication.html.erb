@@ -19,4 +19,14 @@
     <%= publication.category %>
   </p>
 
+
+  <p>
+    <strong>Comments:</strong>
+    <% publication.comments.each_with_index do |comment, index| %>
+        <p> Comment #<%=index + 1%>: <%= comment.description %> </p>
+        
+    <% end %>
+  </p>
+  
+
 </div>
