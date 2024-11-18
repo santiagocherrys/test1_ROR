@@ -1,8 +1,17 @@
 # test1_ROR
-Test for check the ability to use Ruby on Rails
+# Test for check the ability to use Ruby on Rails
 
 this application use postgressql for datababse
 Use the devise gem for authentication and send a email to the user to validate its account
+
+## The repository use enviroment variables:
+ - Create .env in the root file system
+ add your user and password for Database and email service sender
+ DATABASE_USERNAME=
+DATABASE_PASSWORD=
+USER_EMAIL=
+PASSWORD=
+
 
 the sign in has two Roles- admin and writer
 admin are set by database with rails console and for default writers users are generated when they sign up
